@@ -1,3 +1,5 @@
 this is oscar life path project
 
-how to begin a devops manager for beginners 
+how to begin a devops manager for beginners
+
+adding a third branch to the branches is sucessful 
