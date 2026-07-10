@@ -9,7 +9,7 @@ app = Flask(__name__)
 MONGO_HOST = os.getenv('MONGO_HOST', 'mongodb') # 'mongodb' is the service name in Docker Compose
 MONGO_PORT = int(os.getenv('MONGO_PORT', 27017))
 MONGO_USER = os.getenv('MONGO_USER', 'oscarn')
-MONGO_PASS = os.getenv('MONGO_PASS', 'wizzy94')
+MONGO_PASS = os.getenv('MONGO_PASS', '199429')
 MONGO_DB = os.getenv('MONGO_DB', 'barber_shop')
 
 # Connection string (MongoDB authentication)
