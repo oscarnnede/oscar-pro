@@ -38,6 +38,7 @@ pipeline {
                     docker rm barber-app || true
                     docker run -d --name barber-app \
                         -p 5000:5000 \
+                        --add-host host.docker.internal:host-gateway \
                         -e MONGO_HOST=host.docker.internal \
                         -e MONGO_USER=admin \
                         -e MONGO_PASS=pass \
@@ -48,11 +49,21 @@ pipeline {
             }
         }
 
-        stage('Test Endpoint') {
+        // Add debug stage to check logs
+        stage('Debug - Check Logs') {
             steps {
                 sh '''
-                    curl -f http://localhost:5000/ || exit 1
+                    echo "===== BARBER APP LOGS ====="
+                    docker logs barber-app || echo "Container not running!"
+                    echo "===== CONTAINER STATUS ====="
+                    docker ps -a
                 '''
+            }
+        }
+
+        stage('Test Endpoint') {
+            steps {
+                sh 'curl -f http://localhost:5000/ || exit 1'
             }
         }
 
