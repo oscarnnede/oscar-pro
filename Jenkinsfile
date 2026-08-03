@@ -26,12 +26,12 @@ pipeline {
                         -e MONGO_INITDB_ROOT_PASSWORD=pass \
                         -e MONGO_INITDB_DATABASE=barber_shop \
                         mongo:8.0.4
-                    sleep 10
+                    sleep 15
                 '''
             }
         }
 
-        stage('Run Container with MongoDB') {
+        stage('Run Container') {
             steps {
                 sh '''
                     docker stop barber-app || true
@@ -44,19 +44,22 @@ pipeline {
                         -e MONGO_PASS=pass \
                         -e MONGO_DB=barber_shop \
                         barber-app:latest
-                    sleep 5
+                    sleep 10
                 '''
             }
         }
 
-        // Add debug stage to check logs
-        stage('Debug - Check Logs') {
+        stage('Debug - Show Logs') {
             steps {
                 sh '''
                     echo "===== BARBER APP LOGS ====="
                     docker logs barber-app || echo "Container not running!"
+                    echo ""
                     echo "===== CONTAINER STATUS ====="
                     docker ps -a
+                    echo ""
+                    echo "===== HEALTH CHECK ====="
+                    curl -f http://localhost:5000/health || echo "Health check failed!"
                 '''
             }
         }

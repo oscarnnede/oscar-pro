@@ -6,11 +6,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app
+# Copy the rest of the application
 COPY . .
 
-# Expose Flask port
-EXPOSE 5000
-
-# Run the app
-CMD ["python", "barbar-shop.py"]
+# Run with unbuffered output so logs show immediately
+CMD ["python", "-u", "app.py"]
