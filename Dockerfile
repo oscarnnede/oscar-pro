@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run with unbuffered output so logs show immediately
-CMD ["python", "-u", "barbar_shop.py"]
+CMD ["python", "-u", "barber_shop.py"]
