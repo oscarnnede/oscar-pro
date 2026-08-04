@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ledger — Budget Tracker
 
 Personal expense tracker. FastAPI + PostgreSQL backend, React (Vite/Tailwind) frontend,
@@ -51,3 +52,5 @@ Includes:
 - Auth (even basic) if this leaves your home network
 - CI pipeline: build/push images on tag, `kubectl apply` or move to Helm/ArgoCD
 - Grafana dashboard against the `/metrics` endpoint
+=======
+
